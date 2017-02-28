@@ -1,0 +1,60 @@
+# latex writeup and notes 
+
+############ NOTES ################
+
+Barabasi Albert model 
+
+each time 't' we add one new vertex with 'm' new edges (length of the bibliography)
+
+we connect these new edges to the existing graph with proportional to degree 
+
+** solving the probability distro is in PSET 2 (only hints, full solution, tackle it and go to office hours)
+
+10,000 = N should be enough to get good info 
+
+################ 
+
+
+################ SOLVING FOR P(k) ###################
+
+this is from Barabasi and Albert, 1999, Emergence of Scaling in
+Random Networks
+
+(this work rediscover's the Price model)
+
+...the probability P(k) that a vertex in the network interacts with k other vertices decays as a power law, following $P(k) \propto k^-\gamma$. This result indicates that large networks self-organize into a scale-free state, a feature unpredicted by all existing random network models. 
+
+...a “rich-get-richer” phenomenon that can be easily detected in real networks. Furthermore, this property can be used to calculate analytically. The probability that a vertex i has a connectivity smaller than k, 
+
+P[ki(t) < k], 
+
+can be written as 
+
+P(ti > m2 t/k2 ). 
+
+Assuming that we add the vertices to the system at equal time intervals, we obtain 
+
+P(ti > m2t/k2) = 1 - P(ti <= m2t/k2) = 1 - m2t/k2(t + m0). 
+
+The prob- ability density P(k) can be obtained from 
+
+P(k) = \partial{P[ki(t) < k]}/\partial{k}, 
+
+which over long time periods leads to the stationary solution
+
+P(k) = 2m^2/k^3
+
+giving 3, independent of m.
+
+############## LISTS ##################
+
+TO-DO 
+-- get the BA paper, read that 
+	- how to solve the function 
+	- numerical steps 
+
+OFFICE HOUR QUESTIONS:
+-- full solution for p(k) 
+-- 
+
+
