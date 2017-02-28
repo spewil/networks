@@ -2,11 +2,12 @@ from __future__ import division
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np 
+from log_bin import *
 
 # number of nodes added / time steps 
 # the number of edges added each time 
 # save the figure 
-def add_BA_nodes(G,num_added_nodes,m,save=True,filename='net.pdf')
+def add_BA_nodes(G,num_added_nodes,m,save=True,filename='net.pdf'):
 
 	for i in range(num_added_nodes):#num_nodes):	
 
@@ -36,8 +37,8 @@ def add_BA_nodes(G,num_added_nodes,m,save=True,filename='net.pdf')
 		G.add_edges_from([(num_nodes-1,k) for k in rand_nodes.flatten()])
 
 	nx.draw_spring(G,node_size=5) # networkx draw()
-		if save == True:
-			net.savefig(filename)
+	if save == True:
+		net.savefig(filename)
 
 # generate a starting graph 
 # 50 nodes to start 
@@ -46,6 +47,13 @@ G=nx.fast_gnp_random_graph(50,0.3)
 
 add_BA_nodes(G,1000,5,'mynet.pdf')
 
+fig = plt.figure()
+ax= fig.add_subplot(111)
 
+degrees = G.degree().values()
 
+counts, vals = log_bin(degrees)
+ax.loglog(counts,vals)
+
+fig.savefig('degreedistro.pdf')
 
