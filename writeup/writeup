@@ -49,12 +49,24 @@ giving 3, independent of m.
 ############## LISTS ##################
 
 TO-DO 
--- get the BA paper, read that 
-	- how to solve the function 
+
+-- write the quadratic minimization function 
+
+-- how to solve the function theoretically 
 	- numerical steps 
+	- PSET TWO write it out 
+	- code this theoretical solution 
+
+-- implement N = 0 for m some number (N0 = m)
+	- find the minimum number of starting nodes (cant be too big or throws off distro)
+
+--STATS 	
+	- compile all the tests 
+	- ask Rahul about which ones and why 
+		+ and how to interpret results 
 
 OFFICE HOUR QUESTIONS:
+-- should randomly chosen nodes be unique? are degenerate edges ok? random.choice with or without replacement?
 -- full solution for p(k) 
--- 
 
 
