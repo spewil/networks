@@ -20,15 +20,16 @@ def add_nodes3(nodelist,m,num_added):
 	# i is the node we're adding 
 	# between 1 more than the last index of the og graph
 	# and the number we want to add 
-	for i in range(len(nodelist),int(num_added)):
+	# i is the node index 
+	for i in range((2*m+1),int(num_added)):
 
 		rand_nodes = []
 		# choose m random nodes 
-		while len(rand_nodes) < m:
+		while count < m:
 			# choose a random one 
-			# rand_node = rd.choice(nodes)
+			rand_node = rd.choice(nodes)
 			# random integer of indices of nodes -- [0,length-1] 
-			rand_node = nodes[rd.randint(0,len(nodes)-1)]
+			# rand_node = nodes[rd.randint(0,len(nodes)-1)]
 
 			# if chosen value is already in list 
 			if rand_node in rand_nodes:
@@ -61,6 +62,9 @@ def run_BA3(m,num_added,num_trials,save):
 		
 		# make list of node degree counts 
 		degrees = Counter(nodes).values()
+		
+		k1 = np.max(degrees)
+		maxes.append(k1)
 
 		# toc = time.clock()
 		# print the runtime 
