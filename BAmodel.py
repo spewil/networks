@@ -9,7 +9,8 @@ from log_bin import *
 from collections import Counter
 from numba import jit
 
-@jit
+@jit#(nopython=True)
+# @profile
 def add_nodes(nodelist,edgelist,m,num_added):
 	
 	# start with an array of nodes [d1,d2,d3,...] and edges [(n,m),(x,y),...] 
@@ -18,7 +19,7 @@ def add_nodes(nodelist,edgelist,m,num_added):
 	startNo = nodelist.size
 	indices = np.arange(startNo + num_added)
 	# grab the list of node degrees
-	degrees = np.array([nodelist,np.zeros(N)]).flatten()
+	degrees = np.concatenate((nodelist,np.zeros(N,dtype=np.int32)),axis=0)
 	# edge list 
 	# edges = np.append(np.array(edgelist,np.zeros(N)))
 
@@ -55,9 +56,9 @@ def run_BA(m,num_added,num_trials,save):
 	# 50 nodes to start 
 	# complete graph to start, p_edge = .3
 	# want at least the number to connect to 
-	G=nx.complete_graph(m+1)
-	nodes = np.array(G.degree().values())
-	edges = np.array(G.edges())
+	G=nx.complete_graph(2*m+1)
+	nodes = np.array(G.degree().values(),dtype=np.int32)
+	edges = np.array(G.edges(),dtype=np.int32)
 
 	# run BA algo 
 	degree_list = np.array([])
@@ -68,7 +69,7 @@ def run_BA(m,num_added,num_trials,save):
 		degrees = add_nodes(nodes,edges,m,num_added)
 		toc = time.clock()
 		# print the runtime 
-		print 'trial runtime is ' + str(toc - tic)
+		# print 'trial runtime is ' + str(toc - tic)
 
 		degree_list = np.append(degree_list,degrees).flatten()
 
